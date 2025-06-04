@@ -1,4 +1,4 @@
-# 🌸 Ananya’s Coastal Coder Journey 🐚
+# Ananya’s Coastal Coder Journey 🌸🐚
 
 Hi! I'm Ananya – I paint gouache landscapes, debug vibe-code, hoard lip makeup, and live by the sea! 🌊  
 This repo is my cozy corner to explore ideas, build fun things, and keep learning :)
@@ -28,7 +28,6 @@ My little dashboard where I track:
 - 🎬 What I'm watching: *The Bold Type rewatch*
 - 🎵 Listening to: *Chappell Roan & Troye Sivan*
 - ✍🏽 Projects I’m dreaming of:
-  - Art gallery website
   - Lipstick tracker app
   - Sunset visualizer
   - Art + Code zine
