@@ -7,9 +7,9 @@ This repo is my cozy corner to explore ideas, build fun things, and keep learnin
 
 ## 🎨 My Art
 
-🌿 I mostly recreate landscapes with gouache  
-🎨 [View My Digital Art Gallery Live!](https://cosy-corner3.github.io/repo-1/)  
-    Sunsets, monsoons, and gouache magic — now online ✨
+- 🌿 I mostly recreate landscapes with gouache  
+- 🎨 [View My Digital Art Gallery Live!](https://cosy-corner3.github.io/repo-1/)  
+- Sunsets, monsoons, and gouache magic — now online ✨
 ---
 
 ## 💄 Lipstick Tracker App (WIP)
