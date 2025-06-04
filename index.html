@@ -105,7 +105,7 @@
   </header>
 
   <div class="about-me">
-    <p>Hi! I’m Ananya — a gouache-and-lipstick-loving software engineer from the coast of Vizag.  
+    <p>Hi! I’m Ananya, a software engineer -cum- amateur artist from the coast of Vizag.  
     When I’m not coding, I’m usually recreating art from Pinterest, hunting lip balms, or watching sunsets.  
     This is where I keep the things that feel like me.</p>
   </div>
@@ -114,8 +114,11 @@
     <button class="filter-button" onclick="showCategory('gouache')">🎨 Gouache</button>
     <button class="filter-button" onclick="showCategory('pixel')">🕹️ Pixel Art</button>
     <button class="filter-button" onclick="showCategory('digital')">💻 Digital Art</button>
+    <button class="filter-button" onclick="showCategory('blog')">📝 Blog</button>
+    <button class="filter-button" onclick="generateMoodboard()">🎲 Surprise Me!</button>
   </div>
 
+  <!-- Descriptions -->
   <div id="description-gouache" class="category-description">
     Made on 300gsm paper with Brustro paints and a LoFi playlist.
   </div>
@@ -126,10 +129,11 @@
     Drawn on my iPad using Freeform, with lots of Pinterest moodboarding and spontaneous sketch sessions.
   </div>
 
+  <!-- Galleries -->
   <section id="gallery-gouache" class="gallery">
     <div class="art-card">
       <img src="lake.png" alt="Riverside" />
-      <div class="caption">"Riverside" – painted during finals week</div>
+      <div class="caption">"The Babbling Brook" – inspired from Alfred Tennyson's poem</div>
     </div>
     <div class="art-card">
       <img src="sunset1.png" alt="Meadow sunset" />
@@ -144,16 +148,35 @@
   <section id="gallery-pixel" class="gallery">
     <div class="art-card">
       <img src="pixelcat.png" alt="Pixel Cat" />
-      <div class="caption">"Pixel Cat" – my first sprite!</div>
+      <div class="caption">"Pixel Cat"</div>
     </div>
   </section>
 
   <section id="gallery-digital" class="gallery">
     <div class="art-card">
       <img src="vizagdigital.jpg" alt="Vizag Magic" />
-      <div class="caption">"Vizag Magic" – digital doodle over a coffee break</div>
+      <div class="caption">"Tulips" </div>
     </div>
   </section>
+
+  <!-- Blog section -->
+  <section id="gallery-blog" class="gallery">
+    <div class="art-card">
+      <a href="blog/why-i-love-gouache.html" target="_blank">
+        <img src="blog1-preview.jpg" alt="Why I Love Gouache" />
+        <div class="caption">Why I Love Gouache 🎨</div>
+      </a>
+    </div>
+    <div class="art-card">
+      <a href="blog/pixel-healing.html" target="_blank">
+        <img src="pixelblog.jpg" alt="Pixel Healing" />
+        <div class="caption">Pixel Healing – a perfect stress-free art genre! 🧠</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Moodboard Section -->
+  <section id="moodboard" class="gallery"></section>
 
   <footer>
     Built with brushes and breakpoints by Ananya <3
@@ -161,15 +184,40 @@
 
   <script>
     function showCategory(category) {
-      // Hide all galleries and descriptions
       const galleries = document.querySelectorAll('.gallery');
       const descriptions = document.querySelectorAll('.category-description');
       galleries.forEach(g => g.style.display = 'none');
       descriptions.forEach(d => d.style.display = 'none');
 
-      // Show the selected one
       document.getElementById(`gallery-${category}`).style.display = 'grid';
-      document.getElementById(`description-${category}`).style.display = 'block';
+      const desc = document.getElementById(`description-${category}`);
+      if (desc) desc.style.display = 'block';
+    }
+
+    const artPool = [
+      { src: 'lake.png', caption: '"Riverside"', type: 'gouache' },
+      { src: 'sunset1.png', caption: '"Meadow sunset"', type: 'gouache' },
+      { src: 'sunset2.png', caption: '"Floral Dream"', type: 'gouache' },
+      { src: 'pixelcat.png', caption: '"Pixel Cat"', type: 'pixel' },
+      { src: 'vizagdigital.jpg', caption: '"Vizag Magic"', type: 'digital' }
+    ];
+
+    function generateMoodboard() {
+      const moodboard = document.getElementById('moodboard');
+      moodboard.innerHTML = '';
+      document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+      moodboard.style.display = 'grid';
+
+      const shuffled = [...artPool].sort(() => 0.5 - Math.random()).slice(0, 9);
+      shuffled.forEach(art => {
+        const card = document.createElement('div');
+        card.className = 'art-card';
+        card.innerHTML = `
+          <img src="${art.src}" alt="${art.caption}" />
+          <div class="caption">${art.caption} – <i>${art.type}</i></div>
+        `;
+        moodboard.appendChild(card);
+      });
     }
   </script>
 </body>
