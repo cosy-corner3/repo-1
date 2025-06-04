@@ -23,14 +23,27 @@
     }
     header p {
       font-size: 1.1rem;
-      color: #888;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
     }
-
+    .about-me {
+      background: #fff0f5;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .about-me p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
     .button-row {
       text-align: center;
-      margin-top: 1rem;
+      margin: 2rem 0 1rem;
     }
-
     .filter-button {
       background-color: #ffcad4;
       border: none;
@@ -41,18 +54,23 @@
       font-size: 0.95rem;
       transition: background 0.3s ease;
     }
-
     .filter-button:hover {
       background-color: #fdb3c3;
     }
-
+    .category-description {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin: 1rem 0;
+      display: none;
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      margin-top: 2rem;
+      margin-top: 1rem;
+      display: none;
     }
-
     .art-card {
       background: #fff;
       border-radius: 1rem;
@@ -60,30 +78,18 @@
       overflow: hidden;
       transition: transform 0.2s ease;
     }
-
     .art-card:hover {
       transform: translateY(-5px);
     }
-
     .art-card img {
       width: 100%;
       height: auto;
       display: block;
     }
-
     .caption {
       padding: 1rem;
       font-size: 0.95rem;
     }
-
-    .gouache, .pixel, .digital {
-      display: none;
-    }
-
-    .show {
-      display: block;
-    }
-
     footer {
       text-align: center;
       margin-top: 3rem;
@@ -95,8 +101,14 @@
 <body>
   <header>
     <h1>Ananya's Art Gallery 🎨</h1>
-    <p>Sunsets, pixels, and dreamscapes told through brush and code</p>
+    <p>A quiet corner of the internet filled with pigment, pixels, and play!</p>
   </header>
+
+  <div class="about-me">
+    <p>Hi! I’m Ananya — a gouache-and-lipstick-loving software engineer from the coast of Vizag.  
+    When I’m not coding, I’m usually recreating art from Pinterest, hunting lip balms, or watching sunsets.  
+    This is where I keep the things that feel like me.</p>
+  </div>
 
   <div class="button-row">
     <button class="filter-button" onclick="showCategory('gouache')">🎨 Gouache</button>
@@ -104,44 +116,60 @@
     <button class="filter-button" onclick="showCategory('digital')">💻 Digital Art</button>
   </div>
 
-  <section class="gallery">
-    <!-- Gouache Art -->
-    <div class="art-card gouache show">
+  <div id="description-gouache" class="category-description">
+    Made on 300gsm paper with Brustro paints and a LoFi playlist.
+  </div>
+  <div id="description-pixel" class="category-description">
+    Pixel doodles on graph paper using pastel brush markers — inspired by cozy retro games and stationery YouTubers.
+  </div>
+  <div id="description-digital" class="category-description">
+    Drawn on my iPad using Freeform, with lots of Pinterest moodboarding and spontaneous sketch sessions.
+  </div>
+
+  <section id="gallery-gouache" class="gallery">
+    <div class="art-card">
       <img src="lake.png" alt="Riverside" />
       <div class="caption">"Riverside" – painted during finals week</div>
     </div>
-    <div class="art-card gouache show">
+    <div class="art-card">
       <img src="sunset1.png" alt="Meadow sunset" />
       <div class="caption">"Meadow sunset" – a quiet evening trail</div>
     </div>
-    <div class="art-card gouache show">
+    <div class="art-card">
       <img src="sunset2.png" alt="Floral Dream" />
       <div class="caption">"Floral Dream" – wildflowers and sunsets</div>
     </div>
+  </section>
 
-    <!-- Pixel Art -->
-    <div class="art-card pixel">
+  <section id="gallery-pixel" class="gallery">
+    <div class="art-card">
       <img src="pixelcat.png" alt="Pixel Cat" />
       <div class="caption">"Pixel Cat" – my first sprite!</div>
     </div>
+  </section>
 
-    <!-- Digital Art -->
-    <div class="art-card digital">
+  <section id="gallery-digital" class="gallery">
+    <div class="art-card">
       <img src="vizagdigital.jpg" alt="Vizag Magic" />
       <div class="caption">"Vizag Magic" – digital doodle over a coffee break</div>
     </div>
   </section>
 
   <footer>
-    Built with love and pastel pixels by Ananya 🧃
+    Built with brushes and breakpoints by Ananya <3
   </footer>
 
   <script>
     function showCategory(category) {
-      const allCards = document.querySelectorAll('.art-card');
-      const selected = document.querySelectorAll('.' + category);
-      allCards.forEach(card => card.style.display = 'none');
-      selected.forEach(card => card.style.display = 'block');
+      // Hide all galleries and descriptions
+      const galleries = document.querySelectorAll('.gallery');
+      const descriptions = document.querySelectorAll('.category-description');
+      galleries.forEach(g => g.style.display = 'none');
+      descriptions.forEach(d => d.style.display = 'none');
+
+      // Show the selected one
+      document.getElementById(`gallery-${category}`).style.display = 'grid';
+      document.getElementById(`description-${category}`).style.display = 'block';
     }
   </script>
 </body>
